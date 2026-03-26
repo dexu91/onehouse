@@ -5,45 +5,49 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OneHouse – domek</title>
 <link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
 
-<header class="header">
+<header class="header"></header>
 <section class="hero">
+  
 
   <div class="hero-left">
     <img src="logo.png" class="logo-hero">
   </div>
 
   <div class="hero-right">
-    <h1>OneHouse – domek</h1>
-    <p>Całoroczny wypoczynek w otoczeniu natury</p>
-    <a href="kontakt/" class="cta-btn">
-  📩 Skontaktuj się
-</a>
-    <p>Lub Zadzwoń <a href=tel:691850613 class="tel">📞 691 850 613</a></p>
+    <h1><span>OneHouse</span> – domek</h1>
+<div class="hero-box">
+  <p>Całoroczny wypoczynek w otoczeniu natury</p>
+
+  <a href="kontakt/" class="cta-btn">Skontaktuj się</a>
+
+  <p>Lub Zadzwoń <a href="tel:691850613" class="tel">📞 691 850 613</a></p>
+</div>
   </div>
 
-</header>
+</section>
 
  <nav class="nav-bar">
     <a href="../" class="nav-btn">Strona główna</a>
     <a href="onas/" class="nav-btn">O nas</a>
     <a href="#" class="nav-btn">Zdjęcia</a>
-    <a href="#" class="nav-btn">Opinie</a>
+    <a href="opinie/" class="nav-btn">Opinie</a>
     <a href="kontakt/" class="nav-btn">Kontakt</a>
   </nav>
 
-</section>
 
-<section class="about">
+
+<section class="about fade">
   <h2>O nas</h2>
   <p>Oferujemy całoroczne domki w spokojnej, zielonej okolicy. Idealne miejsce na odpoczynek z dala od miasta.</p>
 </section>
 
-<section class="gallery">
+<section class="gallery fade">
   <h2>Zdjęcia</h2>
   <div class="grid">
     <img src="img1.jpg">
@@ -52,23 +56,47 @@
   </div>
 </section>
 
-<section class="opinie">
+<section class="opinie fade">
   <h2>Opinie</h2>
   <p>„Cudowne miejsce, cisza i spokój”</p>
   <p>„Na pewno wrócimy!”</p>
 </section>
 
-<section class="mapa">
+<section class="mapa fade">
   <h2>📍 Znajdź nas</h2>
 
-  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2405.5077554628324!2d14.348163313444836!3d52.921288372053034!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a9e1ae9a7dea33%3A0x2e63f59bf4369151!2sONE%20HOUSE%20-%20domek!5e0!3m2!1spl!2spl!4v1774383148946!5m2!1spl!2spl" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+<div class="map-wrapper">
+  <iframe 
+    src="https://www.google.com/maps?q=Mętno+12+Chojna&output=embed"
     width="100%" 
-    height="350" 
-    style="border:0;" 
-    allowfullscreen="" 
+    height="350"
+    style="border:0;"
     loading="lazy">
   </iframe>
+
+  <a href="https://www.google.com/maps?q=Mętno+12+Chojna" 
+     target="_blank" 
+     class="map-overlay">
+    📍 Kliknij, aby otworzyć nawigację
+  </a>
+</div>
 </section>
+
+<script>
+const elements = document.querySelectorAll(".fade");
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
+    }
+  });
+}, {
+  threshold:0.15
+});
+
+elements.forEach(el => observer.observe(el));
+</script>
 
 </body>
 <footer class="footer">

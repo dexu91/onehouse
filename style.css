@@ -1,14 +1,36 @@
 body{
   margin:0;
   font-family:Arial;
-  background:#f9f9f9;
   color:#333;
   text-align:center;
+  font-family:'Poppins', sans-serif;
+
+  background:linear-gradient(
+    135deg,
+    #fdfbff,
+    #f0f8ff,
+    #fff0f5,
+    #f0f8ff
+  );
+
+  background-size:300% 300%;
+  animation:bgMove 20s ease-in-out infinite;
+}
+
+@keyframes bgMove{
+  0%{
+    background-position:0% 50%;
+  }
+  50%{
+    background-position:100% 50%;
+  }
+  100%{
+    background-position:0% 50%;
+  }
 }
 
 header{
-  background:#d8f3dc;
-  padding:20px;
+display:none;
 }
 
 .header{
@@ -44,15 +66,61 @@ header{
   margin:0 auto;
 }
 
+.nav{
+  background: linear-gradient(135deg, #cdeac0, #b7d9aa);
+  position: relative;
+}
+
+.nav::before{
+  content:"";
+  position:absolute;
+  top:-20px;
+  left:0;
+  width:100%;
+  height:40px;
+  background:radial-gradient(circle at 50% 100%, #cfe8ff 40%, transparent 70%);
+}
+
 .nav-bar{
   display:flex;
   justify-content:center;
   gap:20px;
   padding:15px;
-  background:#d8f3dc;
-    position:sticky;
-  top:0;
-  z-index:100;
+
+  background:rgba(205, 234, 192, 0.7); /* półprzezroczyste */
+  backdrop-filter:blur(10px);
+
+  position:relative;
+  overflow:hidden;
+}
+
+.nav-bar::after{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:linear-gradient(
+    90deg,
+    rgba(144, 238, 144, 0.4),   /* 🌸 wiosna (zielony) */
+    rgba(255, 223, 100, 0.4),   /* ☀️ lato (żółty) */
+    rgba(255, 140, 0, 0.4),     /* 🍂 jesień (pomarańcz) */
+    rgba(173, 216, 230, 0.4),   /* ❄️ zima (błękit) */
+    rgba(144, 238, 144, 0.4)    /* powrót do wiosny */
+  );
+
+  background-size:300% 100%;
+  animation:seasons 8s linear infinite;
+
+  pointer-events:none;
+}
+
+@keyframes seasons{
+  0%{
+    background-position:0% 50%;
+  }
+  100%{
+    background-position:100% 50%;
+  }
 }
 
 .nav-btn{
@@ -83,19 +151,23 @@ nav a{
   justify-content:center;
   gap:40px;
   padding:60px 20px;
-  background:#d0ebff;
+    position: relative;
+  background: linear-gradient(135deg, #cfe8ff, #b8d8f0);
+  overflow: hidden;
+  z-index:1;
 }
 
 /* LEWA STRONA */
 .hero-left{
-  flex:1;
+  flex:1.3; /* 👈 więcej miejsca dla logo */
   display:flex;
-  justify-content:center;
+  justify-content:flex-start; /* 👈 do lewej */
 }
 
 .logo-hero{
-  width:100%;
-  max-width:500px;
+  width:70%;          /* 👈 było 120% */
+  max-width:750px;     /* 👈 było 900px */
+  margin-left:-10px;   /* 👈 było -40px */
   border-radius:15px;
   box-shadow:0 10px 30px rgba(0,0,0,0.2);
 }
@@ -107,13 +179,29 @@ nav a{
 }
 
 .hero-right h1{
-  font-size:40px;
-  margin-bottom:10px;
+  font-family:'Alfa Slab One', serif;
+  font-size:58px;
+  letter-spacing:2px;
+
+  color:#5a2e0c; /* ciemny brąz */
+
+ -webkit-text-stroke: 1px rgba(255, 255, 255, 0.356);
+
+  text-shadow:
+    1px 1px 0 #000,
+    2px 2px 0 #2b1a0d,
+    3px 3px 0 #000,
+    4px 4px 10px rgba(255,140,0,0.4); /* 🔥 lekki żar */
+
+
+
+  margin-bottom:15px;
 }
 
 .hero-right p{
   font-size:18px;
-  margin-bottom:20px;
+  color:#555;
+  margin-bottom:25px;
 }
 
 .hero-right button{
@@ -127,6 +215,85 @@ nav a{
 
 .hero-right button:hover{
   transform:scale(1.05);
+}
+
+.hero::before,
+.hero::after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  filter:blur(40px); /* było 120 → było za mocno rozmyte */
+  animation:floatBg 4s ease-in-out infinite;
+  z-index:-1; /* 🔥 KLUCZ */
+}
+
+
+.hero::before{
+  width:500px;
+  height:500px;
+  background:rgba(255, 200, 200, 0.25);
+  top:50%;
+  left:30%;
+  transform:translate(-50%, -50%);
+}
+
+.hero::after{
+  width:600px;
+  height:600px;
+  background:rgba(200, 230, 255, 0.25);
+  top:50%;
+  left:70%;
+  transform:translate(-50%, -50%);
+}
+
+@keyframes floatBg{
+  0%,100%{
+    transform:translate(0,0) scale(1);
+  }
+  50%{
+    transform:translate(100px,-80px) scale(1.3);
+  }
+}
+
+.hero-box{
+  background:linear-gradient(
+    135deg,
+    rgba(210,166,121,0.9),
+    rgba(176,125,82,0.9)
+  );
+
+  padding:22px 28px;
+  border-radius:18px;
+
+  display:inline-block;
+  margin-top:10px;
+
+  transform:translateX(-20px);
+
+  /* 💥 glow */
+  box-shadow:
+    0 15px 40px rgba(0,0,0,0.15),
+    0 0 25px rgba(255,180,120,0.25);
+
+  /* 💥 lekki blur tła (premium efekt) */
+  backdrop-filter:blur(6px);
+  border:1px solid rgba(255,255,255,0.2);
+}
+
+.hero-box p{
+  font-size:18px;   /* 👈 było 16 */
+  color:#3a3a3a;
+  margin:10px 0;
+}
+
+.hero-box a{
+  color:#2c2c2c;
+  font-weight:bold;
+}
+
+.hero-box .cta-btn{
+  background:#f5c6cb;
+  margin:10px 0;
 }
 
 button{
@@ -237,6 +404,61 @@ img{
   border-radius:15px;
   max-width:1000px;
   box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    display:block;
+  margin:0 auto;
+}
+
+.map-wrapper{
+  position:relative;
+  border-radius:15px;
+  overflow:hidden;
+}
+
+.map-overlay{
+  position:absolute;
+  inset:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:rgba(0,0,0,0.2);
+  color:#fff;
+  font-weight:bold;
+  text-decoration:none;
+
+  opacity:0;
+  transition:0.3s;
+  cursor:pointer;
+}
+
+.map-wrapper:hover .map-overlay{
+  opacity:1;
+}
+
+.mapa{
+  padding:60px 20px;
+  text-align:center;
+}
+
+.map-btn{
+  display:block;       /* 👈 KLUCZ */
+  width:max-content;   /* żeby nie był na całą szerokość */
+  margin:20px auto 0;  /* wyśrodkowanie + odstęp */
+  padding:12px 25px;
+    background:#f8d7da;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+  border-radius:12px;
+  text-decoration:none;
+  color:#333;
+  font-weight:bold;
+  transition:0.3s;
+}
+
+.map-btn:hover{
+  transform:scale(1.05);
+  background:#f8d7da;
+  transform:translateY(-3px) scale(1.05);
 }
 
 .footer{
@@ -291,14 +513,184 @@ img{
   }
 }
 
+.opinie{
+  padding:50px 20px;
+  text-align:center;
+}
+
+.opinie-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:30px;
+}
+
+.opinie-kolumna h3{
+  margin-bottom:15px;
+  color:#333;
+  font-size:20px;
+}
+
+.more{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height 0.4s ease;
+}
+
+.toggle{
+  margin-top:10px;
+  padding:8px 15px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  background:#cce3de;
+}
+
+.opinia{
+  background:#ffffff;
+  border-radius:15px;
+  padding:15px;
+  margin-bottom:15px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+  transition:0.3s;
+  border-left:4px solid #cce3de;
+}
+
+.opinia:hover{
+  transform:translateY(-5px);
+}
+
+.opinia span{
+  display:block;
+  margin-top:10px;
+  font-weight:bold;
+  color:#666;
+}
+
+.booking-score{
+  background:#003580;
+  color:#fff;
+  padding:4px 8px;
+  border-radius:6px;
+  margin-right:5px;
+}
+
+img{
+  width:100%;
+  height:auto;
+}
+/* usunąć jak będą komentarze z otonoclegi */
+.otonoclegi{
+  display:none;
+}
+
+/* === FADE IN (subtelny, bez tandety) === */
+.fade{
+  opacity:0;
+  transform:translateY(30px);
+  transition:opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* === HOVER NA SEKCJACH === */
+.about,
+.gallery,
+.opinie,
+.mapa{
+  transition:0.3s ease;
+  border-radius:20px;
+  margin:20px;
+  background:#ffffff;
+}
+
+/* 👇 efekt hover */
+.about:hover,
+.gallery:hover,
+.opinie:hover,
+.mapa:hover{
+  background:#fff0f3; /* pudrowy róż */
+  transform:translateY(-5px);
+  box-shadow:0 15px 40px rgba(0,0,0,0.08);
+}
 
 @media (max-width: 768px){
+
+  /* 🔥 HERO UKŁAD */
   .hero{
     flex-direction:column;
     text-align:center;
+    padding:30px 15px;
   }
 
-  .hero-right{
-    text-align:center;
+  /* 🔥 LOGO */
+  .hero-left{
+    justify-content:center;
   }
+
+  .logo-hero{
+    width:100%;
+    max-width:400px;
+    margin:0 auto;
+  }
+
+  /* 🔥 PRAWA STRONA */
+  .hero-right{
+    margin-top:20px;
+  }
+
+  /* 🔥 TYTUŁ */
+  .hero-right h1{
+    font-size:36px;
+    letter-spacing:1px;
+  }
+
+  /* 🔥 DREWNIANY BOX */
+  .hero-box{
+    transform:none; /* 👈 usuwa przesunięcie */
+    width:100%;
+    max-width:400px;
+    margin:15px auto;
+    padding:18px;
+  }
+
+  .hero-box p{
+    font-size:16px;
+  }
+
+  /* 🔥 NAVBAR */
+  .nav-bar{
+    flex-wrap:wrap;
+    gap:10px;
+    padding:10px;
+  }
+
+  .nav-btn{
+    flex:1 1 40%;
+    text-align:center;
+    font-size:14px;
+    padding:10px;
+  }
+
+  /* 🔥 SEKCJE */
+  .about,
+  .gallery,
+  .opinie,
+  .mapa{
+    margin:15px 10px;
+    padding:30px 15px;
+  }
+
+  /* 🔥 MAPA */
+  .map-wrapper iframe{
+    height:250px;
+  }
+
+  .map-btn{
+    font-size:14px;
+    padding:10px 15px;
+  }
+
 }
