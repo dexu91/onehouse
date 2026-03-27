@@ -196,6 +196,7 @@ nav a{
 
 
   margin-bottom:15px;
+  padding:0 10px;
 }
 
 .hero-right p{
@@ -268,7 +269,7 @@ nav a{
   display:inline-block;
   margin-top:10px;
 
-  transform:translateX(-20px);
+ transform:none;
 
   /* 💥 glow */
   box-shadow:
@@ -278,6 +279,9 @@ nav a{
   /* 💥 lekki blur tła (premium efekt) */
   backdrop-filter:blur(6px);
   border:1px solid rgba(255,255,255,0.2);
+    margin:20px auto;      /* 👈 wyśrodkowanie */
+  max-width:400px;       /* 👈 ograniczenie szerokości */
+  width:100%;
 }
 
 .hero-box p{
@@ -520,8 +524,14 @@ img{
 
 .opinie-grid{
   display:grid;
-  grid-template-columns:repeat(3, 1fr);
-  gap:30px;
+  grid-template-columns: repeat(2, 1fr); /* 👈 zamiast 3 */
+  gap:40px;
+  align-items:start;
+}
+
+.opinie-kolumna{
+  max-width:600px;
+  margin:0 auto;
 }
 
 .opinie-kolumna h3{
@@ -616,6 +626,30 @@ img{
   box-shadow:0 15px 40px rgba(0,0,0,0.08);
 }
 
+.grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:20px;
+}
+
+.grid img{
+  width:100%;
+  border-radius:15px;
+  display:block;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  cursor:pointer;
+  position:relative;
+  z-index:1;
+}
+
+.grid img:hover{
+  transform: scale(1.15) translateY(-5px); /* 👈 mocniejszy zoom */
+  z-index:10;             /* 👈 wychodzi nad inne */
+  box-shadow: 0 25px 50px rgba(0,0,0,0.35);
+}
+
+
+
 @media (max-width: 768px){
 
   /* 🔥 HERO UKŁAD */
@@ -692,5 +726,18 @@ img{
     font-size:14px;
     padding:10px 15px;
   }
+
+   .opinie-grid{
+    grid-template-columns:1fr;
+  }
+
+  .grid img:hover{
+    transform:none;
+    box-shadow:none;
+  }
+
+   .grid img{
+    transition:none;
+  } 
 
 }
