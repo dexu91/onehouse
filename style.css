@@ -947,16 +947,13 @@ margin-top:50px;
   
 
   /* 🔥 DREWNIANY BOX */
-  .hero-box{
-  transform:none !important;
-    width:100%;
-    max-width:400px;
-    margin:15px auto;
-    padding:18px;
-    margin:0 auto;
-    text-align:center;
-    display:block;
-  }
+.hero-box{
+  width:90%;            /* 👈 zamiast 100% */
+  max-width:320px;      /* 👈 trochę mniejszy */
+  margin:0 auto;
+  padding:18px;
+  text-align:center;
+}
 
   .hero-box p{
     font-size:16px;
