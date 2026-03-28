@@ -904,7 +904,9 @@ margin-top:50px;
 
 
 
-
+*{
+  box-sizing:border-box;
+}
 
 
 
@@ -917,6 +919,7 @@ margin-top:50px;
     text-align: center;
     gap: 20px;
     padding: 20px;
+      justify-content:center; /* 🔥 dodatkowe centrowanie */
   }
 
     .hero-right{
