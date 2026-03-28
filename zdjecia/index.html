@@ -252,7 +252,25 @@ document.querySelectorAll(".gallery-item").forEach(item => {
 
 });
 
+let startX = 0;
 
+const mainImg = document.querySelector(".main-img");
+
+mainImg.addEventListener("touchstart", (e) => {
+  startX = e.touches[0].clientX;
+});
+
+mainImg.addEventListener("touchend", (e) => {
+  let endX = e.changedTouches[0].clientX;
+
+  if (startX - endX > 50) {
+    nextImage(); // 👉 w prawo
+  }
+
+  if (endX - startX > 50) {
+    prevImage(); // 👉 w lewo
+  }
+});
 
 </script>
 
