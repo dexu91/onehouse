@@ -29,8 +29,8 @@
 <nav class="nav-bar">
   <a href="../" class="nav-btn">Strona główna</a>
   <a href="../onas/" class="nav-btn">O nas</a>
-  <a href="../zdjecia/" class="nav-btn">Zdjęcia</a>
-  <a href="index.html" class="nav-btn">Opinie</a>
+  <a href="index.html" class="nav-btn">Zdjęcia</a>
+  <a href="../opinie/" class="nav-btn">Opinie</a>
   <a href="../kontakt/" class="nav-btn">Kontakt</a>
 </nav>
 
@@ -242,27 +242,44 @@ document.querySelectorAll(".gallery-item").forEach(item => {
 });
 
 let startX = 0;
+let currentX = 0;
+let isDragging = false;
 
-const mainContainer = document.querySelector(".main-img");
+const img = document.getElementById("lightbox-main");
 
-if(mainContainer){
+if(img){
 
-  mainContainer.addEventListener("touchstart", (e) => {
+  img.addEventListener("touchstart", (e) => {
     startX = e.touches[0].clientX;
+    isDragging = true;
+    img.style.transition = "none";
   });
 
-  mainContainer.addEventListener("touchend", (e) => {
-    let endX = e.changedTouches[0].clientX;
+  img.addEventListener("touchmove", (e) => {
+    if (!isDragging) return;
 
-    if (startX - endX > 50) {
+    currentX = e.touches[0].clientX;
+    const diff = currentX - startX;
+
+    img.style.transform = `translateX(${diff}px)`;
+  });
+
+  img.addEventListener("touchend", () => {
+    const diff = currentX - startX;
+
+    img.style.transition = "transform 0.3s ease";
+    img.style.transform = "translateX(0)";
+
+    if (diff > 80) {
+      currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+      updateImage();
+    } 
+    else if (diff < -80) {
       currentIndex = (currentIndex + 1) % currentImages.length;
       updateImage();
     }
 
-    if (endX - startX > 50) {
-      currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
-      updateImage();
-    }
+    isDragging = false;
   });
 
 }

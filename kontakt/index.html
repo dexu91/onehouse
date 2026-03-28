@@ -38,13 +38,19 @@
 
   <h2>Formularz kontaktowy</h2>
 
-  <form class="form">
-    <input type="text" placeholder="Imię" required>
-    <input type="email" placeholder="Email" required>
-    <input type="tel" placeholder="Numer telefonu (opcjonalnie)" pattern="[0-9]{9}">
-    <textarea placeholder="Wiadomość" required></textarea>
-    <button type="submit">Wyślij wiadomość</button>
-  </form>
+<form class="form" action="https://formsubmit.co/jeccho@wp.pl" method="POST">
+
+  <input type="text" name="imie" placeholder="Imię" required>
+  <input type="email" name="email" placeholder="Email" required>
+  <input type="tel" name="telefon" placeholder="Numer telefonu (opcjonalnie)">
+  <textarea name="wiadomosc" placeholder="Wiadomość" required></textarea>
+
+  <!-- ukryte -->
+  <input type="hidden" name="_subject" value="Nowa wiadomość z OneHouse">
+  <input type="hidden" name="_captcha" value="false">
+
+  <button type="submit">Wyślij wiadomość</button>
+</form>
 
 </section>
 
