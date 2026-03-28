@@ -204,17 +204,6 @@ lightbox.addEventListener("click", (e) => {
   }
 });
 
-document.querySelectorAll(".tile").forEach(tile => {
-  tile.addEventListener("click", () => {
-
-    const key = tile.dataset.gallery;
-    currentImages = galleries[key];
-    currentIndex = 0;
-
-
-
-  });
-});
 
 document.querySelectorAll(".gallery-item").forEach(item => {
 
@@ -254,23 +243,30 @@ document.querySelectorAll(".gallery-item").forEach(item => {
 
 let startX = 0;
 
-const mainImg = document.querySelector(".main-img");
+const mainContainer = document.querySelector(".main-img");
 
-mainImg.addEventListener("touchstart", (e) => {
-  startX = e.touches[0].clientX;
-});
+if(mainContainer){
 
-mainImg.addEventListener("touchend", (e) => {
-  let endX = e.changedTouches[0].clientX;
+  mainContainer.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+  });
 
-  if (startX - endX > 50) {
-    nextImage(); // 👉 w prawo
-  }
+  mainContainer.addEventListener("touchend", (e) => {
+    let endX = e.changedTouches[0].clientX;
 
-  if (endX - startX > 50) {
-    prevImage(); // 👉 w lewo
-  }
-});
+    if (startX - endX > 50) {
+      currentIndex = (currentIndex + 1) % currentImages.length;
+      updateImage();
+    }
+
+    if (endX - startX > 50) {
+      currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+      updateImage();
+    }
+  });
+
+}
+
 
 </script>
 

@@ -1028,7 +1028,7 @@ margin-top:20px;
   }
 
   /* 🔥 MINIATURKI POZIOMO */
- .thumbs{
+  .thumbs{
     display:flex;            /* 🔥 zamiast grid */
     flex-direction:row;
     overflow-x:auto;
@@ -1043,7 +1043,6 @@ margin-top:20px;
     min-width:80px;
     height:60px;
   }
-
 
   .gallery-top{
     overflow-x:auto;
