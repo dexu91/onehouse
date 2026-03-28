@@ -648,6 +648,269 @@ img{
   box-shadow: 0 25px 50px rgba(0,0,0,0.35);
 }
 
+.hero-box p:first-child{
+  font-family: 'Playfair Display', serif;
+  font-size:20px;
+}
+
+.hero-box .tel{
+  font-family: inherit; /* normalny */
+}
+
+.gallery-tiles{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:30px;
+}
+
+.tile{
+  position:relative;
+  cursor:pointer;
+  overflow:hidden;
+  border-radius:20px;
+}
+
+.tile img{
+  width:100%;
+  height:300px;
+  object-fit:cover;
+  transition:0.4s;
+}
+
+.tile:hover img{
+  transform:scale(1.1);
+}
+
+.tile-title{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  padding:15px;
+  background:linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  color:white;
+  font-size:20px;
+  font-weight:bold;
+}
+
+/* === LIGHTBOX === */
+
+.lightbox{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.9);
+  display:none;
+  z-index:9999;
+}
+
+.lightbox.active{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.lightbox-content{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+
+  width:90%;
+  height:90%;
+
+  position:relative;
+  padding:70px 20px 20px 20px; /* 🔥 więcej miejsca tylko u góry */
+}
+
+.thumbs{
+  width:25%;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+
+  overflow-y:auto;
+  min-height:0;        /* 🔥 KLUCZ */
+  flex:1;              /* 🔥 zamiast height */
+
+  padding-right:5px;
+}
+
+.thumbs img{
+  width:100%;
+  border-radius:10px;
+  cursor:pointer;
+  opacity:0.6;
+}
+
+.thumbs img.active{
+  opacity:1;
+  outline:2px solid white;
+}
+
+.thumbs::-webkit-scrollbar{
+  width:6px;
+}
+
+.thumbs::-webkit-scrollbar-thumb{
+  background:#999;
+  border-radius:10px;
+}
+
+.main-img{
+  width:75%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+}
+
+.main-img img{
+  max-width:100%;
+  max-height:100%;
+  border-radius:15px;
+  
+}
+
+/* RAMKA */
+.lightbox-content{
+  display:flex;
+  width:90%;
+  height:90%;
+  gap:20px;
+
+  background:linear-gradient(135deg, #d2a679, #b07d52);
+  padding:15px;
+  border-radius:20px;
+  padding-top:70px; /* 🔥 reguluje wysokość */
+
+  box-shadow:0 20px 60px rgba(0,0,0,0.5);
+    position:relative; /* 🔥 KLUCZ */
+      flex-direction:column;  /* 🔥 KLUCZ */
+}
+
+/* STRZAŁKI */
+.arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:40px;
+  background:rgba(0,0,0,0.4);
+  color:white;
+  border:none;
+  padding:10px 15px;
+  cursor:pointer;
+  border-radius:10px;
+  transition:0.3s;
+}
+
+.arrow:hover{
+  background:rgba(0,0,0,0.7);
+}
+
+.arrow.left{
+  left:10px;
+}
+
+.arrow.right{
+  right:10px;
+}
+
+/* ZAMKNIĘCIE */
+.close-btn{
+  position:absolute;
+  top:20px;
+  right:25px;
+
+  z-index:1000;
+
+  background:rgba(0,0,0,0.5);
+  color:white;
+
+  border:none;
+  padding:10px 18px;
+  border-radius:12px;
+
+  cursor:pointer;
+  font-weight:bold;
+
+  backdrop-filter:blur(5px);
+  transition:0.3s;
+}
+
+.close-btn:hover{
+  transform:scale(1.05);
+  background:linear-gradient(135deg, #e0b98f, #c18a5c);
+}
+
+.gallery-body{
+  display:flex;
+  gap:20px;
+
+  flex:1;              /* 🔥 KLUCZ */
+  min-height:0;        /* 🔥 SUPER WAŻNE */
+}
+
+.gallery-top{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:15px;
+
+margin-top:20px;
+
+  margin-bottom:20px;
+
+  position:relative;
+
+    background:rgba(0,0,0,0.25);
+  padding:10px 15px;
+  border-radius:16px;
+
+  backdrop-filter:blur(6px);
+}
+
+.gallery-item:hover{
+  transform:scale(1.08);
+}
+
+.gallery-item.active{
+  outline:3px solid #d2a679;
+  transform:scale(1.05);
+}
+
+.gallery-item{
+  width:120px;              /* było ~90 */
+  border-radius:14px;
+  overflow:hidden;
+  cursor:pointer;
+
+  transition:0.3s;
+}
+
+.gallery-item img{
+  width:100%;
+  height:60px;
+  object-fit:cover;
+  display:block;
+}
+
+.gallery-item span{
+  display:block;
+  font-size:12px;
+  color:white;
+  padding:5px;
+  text-align:center;
+}
+
+.gallery-item:hover{
+  transform:scale(1.05);
+}
+
+.gallery-item.active{
+  outline:3px solid #d2a679;
+}
+
 
 
 @media (max-width: 768px){
@@ -739,5 +1002,76 @@ img{
    .grid img{
     transition:none;
   } 
+
+  /* 🔥 LIGHTBOX */
+  .lightbox-content{
+    width:100%;
+    height:100%;
+    border-radius:0;
+    padding:60px 10px 10px 10px;
+  }
+
+  .gallery-body{
+    flex-direction:column;
+  }
+
+  /* 🔥 DUŻE ZDJĘCIE NA GÓRZE */
+  .main-img{
+    width:100%;
+    height:60%;
+  }
+
+  .main-img img{
+    max-height:100%;
+    object-fit:contain;
+  }
+
+  /* 🔥 MINIATURKI POZIOMO */
+  .thumbs{
+    width:100%;
+    display:flex;
+    overflow-x:auto;
+    gap:10px;
+
+    padding:10px 5px;
+  }
+
+  .thumbs img{
+    min-width:90px;
+    height:70px;
+    object-fit:cover;
+  }
+
+  .gallery-top{
+    overflow-x:auto;
+    justify-content:flex-start;
+    gap:10px;
+  }
+
+  .gallery-item{
+    min-width:90px;
+  }
+
+  .arrow{
+    font-size:28px;
+    padding:6px 10px;
+  }
+
+  .close-btn{
+    top:10px;
+    right:10px;
+    padding:8px 12px;
+    font-size:12px;
+  }
+
+  .gallery-tiles{
+    grid-template-columns:1fr;
+    gap:15px;
+  }
+
+  .tile img{
+    height:200px;
+  }
+
 
 }
